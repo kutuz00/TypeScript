@@ -8,16 +8,16 @@ window.addEventListener('DOMContentLoaded', () => {
   renderUserBlock('John Doe', '/img/avatar.png', 324);
   renderSearchFormBlock("2022-05-28", "2022-05-30");
   renderSearchStubBlock();
-  // renderToast(
-  //   {
-  //     text: 'Это пример уведомления. Используйте его при необходимости',
-  //     type: 'success',
-  //   },
-  //   {
-  //     name: 'Понял',
-  //     handler: () => {
-  //       console.log('Уведомление закрыто');
-  //     },
-  //   }
-  // );
+  renderToast(
+    {
+      text: 'Это пример уведомления. Используйте его при необходимости',
+      type: 'success',
+    },
+    {
+      name: 'Понял',
+      handler: () => {
+        console.log('Уведомление закрыто');
+      },
+    }
+  );
 });
