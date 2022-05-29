@@ -5,10 +5,10 @@ export function renderSearchFormBlock(checkInDate: string, checkOutDate: string)
 
   const minCheckInDate = new Date(Date.now()).toISOString().split("T")[0];
   const maxDate = new Date();
+
   maxDate.setFullYear(maxDate.getFullYear(), maxDate.getMonth() + 2, 0);
   const maxCheckInOutDate = maxDate.toISOString().split("T")[0]
-  // const minStay = new Date();
-  // minStay.setDate(minStay.getDate() + 2)
+
   renderBlock(
     'search-form-block',
     `
