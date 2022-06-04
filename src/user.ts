@@ -1,16 +1,22 @@
 import { renderBlock } from './lib.js';
 
 
-export function getUserData(user): unknown {
-  let userData = JSON.parse(localStorage.getItem(user));
-  let userParams: object = { username: "undefined", avatarUrl: "undefined" };
-  if (typeof userData.username === 'string' && typeof userData.avatarUrl === 'string') {
-    return userData;
+export function getUserData(user: string) {
+  const storageData: unknown = localStorage.getItem(user)
+  if (typeof storageData === 'string') {
+    try {
+      return JSON.parse(storageData);
+    } catch (error) {
+      return null;
+    }
   }
-  return userParams;
+  return null;
 }
-export function getFavoritesAmount(favoritesAmount?): unknown {
-  return localStorage.getItem(favoritesAmount)
+export function getFavoritesAmount(favoritesAmount) {
+  const storageData: unknown = localStorage.getItem(favoritesAmount);
+  if (typeof storageData === 'string') {
+    return Number.parseInt(storageData);
+  }
 }
 
 export function renderUserBlock(userName: string, avatar: string, favoriteItemsAmount?: number) {
