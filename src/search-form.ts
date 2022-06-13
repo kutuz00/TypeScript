@@ -1,9 +1,16 @@
 import { renderBlock } from './lib.js';
-import { SearchFormData } from "./interfaces";
+import { SearchFormData } from "./interfaces.js";
+import { renderAPISearchResultsBlock } from "./search-results.js";
 
 export const searchQuary = (formData: SearchFormData): void => {
   console.log(formData);
+  document.querySelector('.before-results-block')
+    .parentNode.removeChild(document.querySelector('.before-results-block'))
+  renderAPISearchResultsBlock(formData);
 }
+
+
+
 
 export const search = () => {
   const city = document.getElementById('city') as HTMLInputElement;
@@ -31,7 +38,7 @@ export const search = () => {
     searchForm.maxPrice = Number.parseInt((e.target as HTMLInputElement).value) | NaN
   })
   form.addEventListener('submit', (e) => {
-    e.preventDefault()
+    e.preventDefault();
     searchQuary(searchForm);
   })
 

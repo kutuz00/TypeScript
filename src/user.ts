@@ -19,6 +19,8 @@ export function getFavoritesAmount(favoritesAmount) {
   }
 }
 
+
+
 export function renderUserBlock(userName: string, avatar: string, favoriteItemsAmount?: number) {
   const favoritesCaption = favoriteItemsAmount
     ? favoriteItemsAmount
@@ -42,3 +44,4 @@ export function renderUserBlock(userName: string, avatar: string, favoriteItemsA
     `
   );
 }
+

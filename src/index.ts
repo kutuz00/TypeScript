@@ -1,7 +1,10 @@
 import { renderSearchFormBlock, search } from './search-form.js';
-import { renderSearchStubBlock } from './search-results.js';
+import { renderSearchStubBlock, renderAPISearchResultsBlock } from './search-results.js';
 import { renderUserBlock, getUserData, getFavoritesAmount } from './user.js';
 import { renderToast } from './lib.js';
+
+
+const favoriteItem = document.querySelector('.favorite')
 
 const defaultCheckInDate: Date = new Date();
 defaultCheckInDate.setDate(new Date().getDate() + 1);

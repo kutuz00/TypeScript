@@ -1,4 +1,9 @@
-import { renderBlock } from './lib.js';
+import { renderBlock, renderResultsBlock } from './lib.js';
+import { Place, SearchFormData } from './interfaces.js';
+
+
+
+
 
 export function renderSearchStubBlock() {
   renderBlock(
@@ -24,6 +29,46 @@ export function renderEmptyOrErrorSearchBlock(reasonMessage) {
   );
 }
 
+
+export function renderAPISearchResultsBlock(formdata: SearchFormData): void {
+  fetch('http://192.168.1.8:3030/places?checkInDate='
+    + new Date(formdata.checkInDate).getTime()
+    + '&checkOutDate=' + new Date(formdata.checkOutDate).getTime()
+    + '&coordinates=59.9386,30.3141')
+    .then(res => res.json())
+    .then(data => {
+      data.forEach(el => {
+        let place: Place = el;
+        renderResultsBlock(
+          'search-results-block',
+          `
+            <li class="result">
+              <div class="result-container">
+                <div class="result-img-container">
+                  <div class="favorites"></div>
+                  <img class="result-img" src="${place.image}" alt="">
+                </div>	
+                <div class="result-info">
+                  <div class="result-info--header">
+                    <p>${place.name}</p>
+                    <p class="price">${place.price}&#8381;</p>
+                  </div>
+                  <div class="result-info--map"><i class="map-icon"></i> ${place.remoteness} от вас</div>
+                  <div class="result-info--descr">${place.description}</div>
+                  <div class="result-info--footer">
+                    <div>
+                      <button>Забронировать</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </li>
+          `
+        );
+      });
+    })
+    .catch(error => renderEmptyOrErrorSearchBlock(error));
+}
 export function renderSearchResultsBlock() {
   renderBlock(
     'search-results-block',

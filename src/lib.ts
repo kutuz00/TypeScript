@@ -4,6 +4,14 @@ export function renderBlock(elementId, html) {
   console.log(element);
 }
 
+export function renderResultsBlock(elementId, html) {
+  const element = document.getElementById(elementId);
+  const ul = document.createElement('ul');
+  ul.className = 'results-list';
+  ul.innerHTML = html;
+  element.append(ul);
+}
+
 export function renderToast(message, action) {
   let messageText = '';
 
@@ -28,3 +36,4 @@ export function renderToast(message, action) {
     };
   }
 }
+
