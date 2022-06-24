@@ -1,9 +1,10 @@
-import { renderSearchFormBlock } from './search-form.js';
-import { renderSearchStubBlock } from './search-results.js';
-import { renderUserBlock } from './user.js';
+import { renderSearchFormBlock, search } from './search-form.js';
+import { renderSearchStubBlock, renderAPISearchResultsBlock } from './search-results.js';
+import { renderUserBlock, getUserData, getFavoritesAmount } from './user.js';
 import { renderToast } from './lib.js';
 
-const defaultCheckInDate = new Date();
+
+const defaultCheckInDate: Date = new Date();
 defaultCheckInDate.setDate(new Date().getDate() + 1);
 
 const defaultCheckIn = defaultCheckInDate.toISOString().split("T")[0]
@@ -13,8 +14,13 @@ minStayDays.setDate(minStayDays.getDate() + 2);
 
 const minStay = minStayDays.toISOString().split("T")[0]
 
+const user = getUserData('user');
+const userFavoriteData = getFavoritesAmount('favoritesAmount')
+
+
 window.addEventListener('DOMContentLoaded', () => {
-  renderUserBlock('John Doe', '/img/avatar.png', 324);
+
+  renderUserBlock(user.username, user.avatarUrl, userFavoriteData);
   renderSearchFormBlock(defaultCheckIn, minStay);
   renderSearchStubBlock();
   renderToast(
@@ -29,4 +35,5 @@ window.addEventListener('DOMContentLoaded', () => {
       },
     }
   );
+  search();
 });

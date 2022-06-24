@@ -3,6 +3,23 @@ export function renderBlock(elementId, html) {
   element.innerHTML = html;
 }
 
+function renderFavoriteBtn() {
+  document.querySelectorAll('.favorites').forEach(el => el.addEventListener('click', toggleFavoriteItem));
+}
+
+export function toggleFavoriteItem(e) {
+  console.log(e);
+}
+
+export function renderResultsBlock(elementId, html) {
+  const element = document.getElementById(elementId);
+  const ul = document.createElement('ul');
+  ul.className = 'results-list';
+  ul.innerHTML = html;
+  element.append(ul);
+  renderFavoriteBtn();
+}
+
 export function renderToast(message, action) {
   let messageText = '';
 
@@ -27,3 +44,4 @@ export function renderToast(message, action) {
     };
   }
 }
+
