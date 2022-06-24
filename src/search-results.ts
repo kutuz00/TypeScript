@@ -2,9 +2,6 @@ import { renderBlock, renderResultsBlock } from './lib.js';
 import { Place, SearchFormData } from './interfaces.js';
 
 
-
-
-
 export function renderSearchStubBlock() {
   renderBlock(
     'search-results-block',
@@ -30,6 +27,7 @@ export function renderEmptyOrErrorSearchBlock(reasonMessage) {
 }
 
 
+
 export function renderAPISearchResultsBlock(formdata: SearchFormData): void {
   fetch('http://192.168.1.8:3030/places?checkInDate='
     + new Date(formdata.checkInDate).getTime()
@@ -38,14 +36,14 @@ export function renderAPISearchResultsBlock(formdata: SearchFormData): void {
     .then(res => res.json())
     .then(data => {
       data.forEach(el => {
-        let place: Place = el;
+        const place: Place = el;
         renderResultsBlock(
           'search-results-block',
           `
             <li class="result">
               <div class="result-container">
                 <div class="result-img-container">
-                  <div class="favorites"></div>
+                  <div class="favorites" ></div>
                   <img class="result-img" src="${place.image}" alt="">
                 </div>	
                 <div class="result-info">

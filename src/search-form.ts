@@ -3,14 +3,10 @@ import { SearchFormData } from "./interfaces.js";
 import { renderAPISearchResultsBlock } from "./search-results.js";
 
 export const searchQuary = (formData: SearchFormData): void => {
-  console.log(formData);
   document.querySelector('.before-results-block')
     .parentNode.removeChild(document.querySelector('.before-results-block'))
   renderAPISearchResultsBlock(formData);
 }
-
-
-
 
 export const search = () => {
   const city = document.getElementById('city') as HTMLInputElement;

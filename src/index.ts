@@ -4,8 +4,6 @@ import { renderUserBlock, getUserData, getFavoritesAmount } from './user.js';
 import { renderToast } from './lib.js';
 
 
-const favoriteItem = document.querySelector('.favorite')
-
 const defaultCheckInDate: Date = new Date();
 defaultCheckInDate.setDate(new Date().getDate() + 1);
 
